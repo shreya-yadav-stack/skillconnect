@@ -1,0 +1,36 @@
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Dependencies
+node_modules/
+
+# React Native / Android build files
+android/.gradle/
+android/app/build/
+android/build/
+ios/Pods/
+ios/build/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+
+# Local editor files
+.vscode/
+.idea/
+
+# Backup files
+*.backup
+*.bak
+*.save
+*-backup*
+
+# Android local SDK configuration
+**/local.properties
+*.before-*
+
+# Android signing and local files
+**/debug.keystore
+**/local.properties.save*
