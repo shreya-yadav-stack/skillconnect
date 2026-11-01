@@ -265,7 +265,7 @@ app.post('/api/auth/signup', async (req, res) => {
       );
 
 
-      const verificationUrl = `https://bullhorn-stapling-stapling.ngrok-free.dev/api/auth/verify-email?token=${verificationToken}`;
+      const verificationUrl = `${process.env.PUBLIC_API_URL}/api/auth/verify-email?token=${verificationToken}`;
 
       const info = await transporter.sendMail({
         from: `"SkillConnect" <${process.env.EMAIL_USER}>`,
@@ -462,7 +462,7 @@ console.log('PREVIEW URL:', nodemailer.getTestMessageUrl(info));
       );
 
       const resetLink =
-        `  https://bullhorn-stapling-stapling.ngrok-free.dev/api/auth/reset-password?token=${resetToken}`;
+      `${process.env.PUBLIC_API_URL}/api/auth/reset-password?token=${resetToken}`;
 
       await transporter.sendMail({
         from: process.env.EMAIL_USER,
@@ -1548,8 +1548,8 @@ app.get('/api/paypal/cancel', (req, res) => {
           application_context: {
             brand_name: 'SkillConnect',
             user_action: 'PAY_NOW',
-            return_url: `${process.env.PUBLIC_API_URL || 'https://bullhorn-stapling-stapling.ngrok-free.dev'}/api/paypal/return`,
-            cancel_url: `${process.env.PUBLIC_API_URL || 'https://bullhorn-stapling-stapling.ngrok-free.dev'}/api/paypal/cancel`,
+            return_url: `${process.env.PUBLIC_API_URL}/api/paypal/return`,
+            cancel_url: `${process.env.PUBLIC_API_URL}/api/paypal/cancel`,
           },
         },
         {
