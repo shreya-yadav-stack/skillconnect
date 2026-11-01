@@ -34,3 +34,7 @@ yarn-debug.log*
 # Android signing and local files
 **/debug.keystore
 **/local.properties.save*
+
+# Local database backups
+backend/skillconnect_backup.dump
+backend/skillconnect_backup.sql
