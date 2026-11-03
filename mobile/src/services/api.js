@@ -2,7 +2,7 @@ import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const api = axios.create({
-  baseURL: 'https://bullhorn-stapling-stapling.ngrok-free.dev',
+  baseURL: 'https://skillconnect-api-dawr.onrender.com',
  // baseURL: 'http://10.0.0.28:5000',
   headers: {
     'Content-Type': 'application/json',

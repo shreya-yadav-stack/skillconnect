@@ -32,7 +32,7 @@ const LoginScreen = ({navigation}) => {
   const [showPassword, setShowPassword] = useState(false);
 
   const [errors, setErrors] = useState({});
-
+  const [isLoading, setIsLoading] = useState(false);
 
 
   const validateForm = () => {
@@ -56,40 +56,45 @@ const LoginScreen = ({navigation}) => {
   };
 
   const handleLogin = async () => {
+    if (isLoading) {
+      return;
+    }
+  
     const isValid = validateForm();
-
+  
     if (!isValid) {
       return;
     }
-
+  
+    setIsLoading(true);
+  
     try {
       const response = await api.post('/api/auth/login', {
         email,
         password,
       });
-
-
+  
       await AsyncStorage.setItem('token', response.data.token);
-
+  
       dispatch(
         setAuth({
           user: response.data.user,
           token: response.data.token,
         }),
       );
-
-
-
+  
       Alert.alert('Login', response.data.message);
     } catch (error) {
       console.log('LOGIN ERROR:', error);
       console.log('LOGIN ERROR MESSAGE:', error.message);
       console.log('LOGIN ERROR RESPONSE:', error.response?.data);
-
+  
       Alert.alert(
         'Login',
         error.response?.data?.message || 'Something went wrong',
       );
+    } finally {
+      setIsLoading(false);
     }
   };
   const handleGoogleLogin = async () => {
@@ -142,13 +147,7 @@ const LoginScreen = ({navigation}) => {
       <View style={styles.screenContent}>
 
         {/* Header / Logo */}
-        <View style={styles.logoSection}>
-  <Image
-    source={require('../../../assets/image.png')}
-    style={styles.logoImage}
-    resizeMode="contain"
-  />
-</View>
+  
         {/* Welcome Section */}
 
 
@@ -247,10 +246,11 @@ const LoginScreen = ({navigation}) => {
 
           {/* Login Button */}
           <View style={styles.buttonContainer}>
-            <CustomButton
-              title="Log In"
-              onPress={handleLogin}
-            />
+          <CustomButton
+  title="Log In"
+  onPress={handleLogin}
+  disabled={isLoading}
+/>
           </View>
 
           {/* Divider */}

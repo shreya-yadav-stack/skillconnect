@@ -170,13 +170,7 @@ const handleGoogleSignup = async () => {
   {/* Welcome section */}
 <View style={styles.welcomeSection}>
 {/* Logo */}
-<View style={styles.logoSection}>
-  <Image
-    source={require('../../../assets/image.png')}
-    style={styles.logoImage}
-    resizeMode="contain"
-  />
-</View>
+
 
   <Image
     source={require('../../../assets/image copy.png')}
